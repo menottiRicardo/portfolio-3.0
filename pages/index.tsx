@@ -10,6 +10,7 @@ import Social from "../components/Social";
 import About from "../components/About";
 import Error from "../components/Error";
 import ErrorU from "../components/ErrorU";
+import Tech from "../components/Tech";
 
 const commands = ["about", "info"];
 const Home: NextPage = () => {
@@ -41,6 +42,10 @@ const Home: NextPage = () => {
         setInput("");
         SetCommands(commands.concat("about"));
         break;
+      case "tech":
+        setInput("");
+        SetCommands(commands.concat("tech"));
+        break;
       case "clear":
         setInput("");
         SetCommands([]);
@@ -70,6 +75,8 @@ const Home: NextPage = () => {
           return <About key={index} />;
         case "errorU":
           return <ErrorU key={index} />;
+        case "tech":
+          return <Tech key={index} />;
         default:
           return <Error key={Math.random()} />;
       }

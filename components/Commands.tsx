@@ -10,8 +10,11 @@ const Commands = () => {
           Available Commands are:
         </h1>
       </div>
+      <h1 className="text-white tracking-wider font-mono ml-2">
+        usage: run [command]
+      </h1>
       {commands.map((com) => (
-        <a key={com} className="text-white font-mono tracking-wider ml-3">
+        <a key={com} className="regular-font ml-3">
           - {com}
         </a>
       ))}

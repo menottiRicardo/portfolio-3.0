@@ -6,7 +6,8 @@ import { useState } from "react";
 
 import Commands from "../components/Commands";
 import Usage from "../components/Usage";
-import Social from "../components/About";
+import Social from "../components/Social";
+import About from "../components/About";
 
 const commands = ["about", "info"];
 const Home: NextPage = () => {
@@ -31,14 +32,16 @@ const Home: NextPage = () => {
         setInput("");
         SetCommands(commands.concat("social"));
         break;
+      case "about":
+        setInput("");
+        SetCommands(commands.concat("about"));
+        break;
       case "clear":
         setInput("");
         SetCommands([]);
         break;
       default:
         break;
-    }
-    if (input[input.length - 1] === "") {
     }
   };
 
@@ -51,6 +54,8 @@ const Home: NextPage = () => {
           return <Usage />;
         case "social":
           return <Social />;
+        case "about":
+          return <About />;
         default:
           return <Commands />;
       }
@@ -120,8 +125,8 @@ const Home: NextPage = () => {
             <ChevronRightIcon className="w-7 text-white animate-pulse" />
             <input
               type="text"
-              className="w-full bg-transparent outline-none text-white"
-              value={input}
+              className="w-full bg-transparent outline-none text-white caret-green-500"
+              value={input.toLocaleLowerCase()}
               onChange={(e) => setInput(e.target.value)}
               onKeyUp={(e) => handleChange(e.key)}
             />

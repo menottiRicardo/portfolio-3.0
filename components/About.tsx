@@ -1,33 +1,83 @@
-import { ChevronRightIcon, LinkIcon } from "@heroicons/react/outline";
-import Link from "next/link";
+import {
+  BriefcaseIcon,
+  ChevronRightIcon,
+  FolderAddIcon,
+  LocationMarkerIcon,
+  UserIcon,
+  UserRemoveIcon,
+} from "@heroicons/react/outline";
 import React from "react";
+import TypeIt from "typeit-react";
 
-const socials = [{ name: "Github", url: "" }];
-const Social = () => {
+const About = () => {
   return (
     <div className="grid">
       <div className="flex items-center">
         <ChevronRightIcon className="w-4 text-white mr-2" />
-        <h1 className="text-white font-bold tracking-wide font-mono">
-          Social Links:
+
+        <div className="icon-container">
+          <UserIcon className="icon" />
+
+          <h1 className="regular-font">
+            <TypeIt
+              options={{ cursor: false, speed: 50 }}
+              getBeforeInit={(instance) => {
+                instance.type("21 years old").pause(750);
+
+                // Remember to return it!
+                return instance;
+              }}
+            />
+          </h1>
+        </div>
+      </div>
+
+      <div className="icon-container ml-6">
+        <BriefcaseIcon className="icon" />
+        <h1 className="regular-font">
+          <TypeIt
+            options={{ cursor: false, speed: 50 }}
+            getBeforeInit={(instance) => {
+              instance.pause(750).type("Full-Stack Developer");
+
+              // Remember to return it!
+              return instance;
+            }}
+          />
         </h1>
       </div>
-      {socials.map((social) => (
-        <Link
-          href={"https://github.com/menottiRicardo"}
-          key={social.name}
-          target="_blank"
-        >
-          <div className="flex cursor-pointer">
-            <a className="text-white font-mono tracking-wider ml-3">
-              - {social.name}
-            </a>
-            <LinkIcon className="w-3 text-gray-500 ml-1" />
-          </div>
-        </Link>
-      ))}
+
+      <div className="icon-container ml-6">
+        <LocationMarkerIcon className="icon" />
+        <h1 className="regular-font">
+          <TypeIt
+            options={{ cursor: false, speed: 50 }}
+            getBeforeInit={(instance) => {
+              instance.pause(1350).type("Panama");
+
+              // Remember to return it!
+              return instance;
+            }}
+          />
+        </h1>
+      </div>
+
+      <div className="icon-container ml-6">
+        <FolderAddIcon className="icon" />
+        <h1 className="regular-font">
+          <TypeIt
+            options={{ cursor: false, speed: 50 }}
+            getBeforeInit={(instance) => {
+              instance.pause(2100).type("Nest Js");
+
+              // Remember to return it!
+              return instance;
+            }}
+          />
+        </h1>
+      </div>
     </div>
   );
 };
 
-export default Social;
+export default About;

@@ -8,17 +8,22 @@ import Commands from "../components/Commands";
 import Usage from "../components/Usage";
 import Social from "../components/Social";
 import About from "../components/About";
+import Error from "../components/Error";
+import ErrorU from "../components/ErrorU";
 
 const commands = ["about", "info"];
 const Home: NextPage = () => {
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState<string>("");
   const [commands, SetCommands] = useState<string[]>([]);
 
   const handleChange = (key: string) => {
     if (key !== "Enter") return;
 
     const command = input.split(" ");
-    if (command[0].toLocaleLowerCase() !== "run") return;
+    if (command[0].toLocaleLowerCase() !== "run") {
+      setInput("");
+      return SetCommands(commands.concat("error"));
+    }
     switch (command[1].toLocaleLowerCase()) {
       case "help":
         setInput("");
@@ -41,6 +46,8 @@ const Home: NextPage = () => {
         SetCommands([]);
         break;
       default:
+        setInput("");
+        SetCommands(commands.concat("errorU"));
         break;
     }
     setTimeout(() => {
@@ -51,18 +58,20 @@ const Home: NextPage = () => {
   };
 
   const renderCommands = () => {
-    return commands.map((command) => {
+    return commands.map((command, index) => {
       switch (command) {
         case "help":
-          return <Commands />;
+          return <Commands key={index} />;
         case "usage":
-          return <Usage />;
+          return <Usage key={index} />;
         case "social":
-          return <Social />;
+          return <Social key={index} />;
         case "about":
-          return <About />;
+          return <About key={index} />;
+        case "errorU":
+          return <ErrorU key={index} />;
         default:
-          return <Commands />;
+          return <Error key={Math.random()} />;
       }
     });
   };
@@ -123,10 +132,11 @@ const Home: NextPage = () => {
             </div>
 
             <div>{renderCommands()}</div>
-            <div className="h-1" id="bottom" />
+            <div className="h-1 mt-2" id="bottom" />
           </div>
 
-          <div className="border-2 flex z-10 w-full bg-black">
+          <div className="h-7" />
+          <div className="border-2 flex z-10 w-full bg-black bottom-0 absolute">
             <ChevronRightIcon className="w-7 text-white animate-pulse" />
             <input
               type="text"

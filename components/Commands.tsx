@@ -1,6 +1,6 @@
 import { ChevronRightIcon } from "@heroicons/react/outline";
 import React from "react";
-const commands = ["about", "projects", "social links"];
+const commands = ["usage", "help", "clear", "about", "projects", "social"];
 const Commands = () => {
   return (
     <div className="grid">

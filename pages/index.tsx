@@ -6,6 +6,7 @@ import { useState } from "react";
 
 import Commands from "../components/Commands";
 import Usage from "../components/Usage";
+import Social from "../components/About";
 
 const commands = ["about", "info"];
 const Home: NextPage = () => {
@@ -16,8 +17,8 @@ const Home: NextPage = () => {
     if (key !== "Enter") return;
     console.log("kyt", key, input.split(""));
     const command = input.split(" ");
-    if (command[0] !== "run") return;
-    switch (command[1]) {
+    if (command[0].toLocaleLowerCase() !== "run") return;
+    switch (command[1].toLocaleLowerCase()) {
       case "help":
         setInput("");
         SetCommands(commands.concat("help"));
@@ -25,6 +26,14 @@ const Home: NextPage = () => {
       case "usage":
         setInput("");
         SetCommands(commands.concat("usage"));
+        break;
+      case "social":
+        setInput("");
+        SetCommands(commands.concat("social"));
+        break;
+      case "clear":
+        setInput("");
+        SetCommands([]);
         break;
       default:
         break;
@@ -40,6 +49,8 @@ const Home: NextPage = () => {
           return <Commands />;
         case "usage":
           return <Usage />;
+        case "social":
+          return <Social />;
         default:
           return <Commands />;
       }
@@ -91,8 +102,8 @@ const Home: NextPage = () => {
                 options={{ cursor: false, speed: 50 }}
                 getBeforeInit={(instance) => {
                   instance
-                    .pause(8500)
-                    .type("Please run 'help' to see the available commands")
+                    .pause(9500)
+                    .type("Please run 'run help' to see the available commands")
                     .pause(750);
 
                   // Remember to return it!

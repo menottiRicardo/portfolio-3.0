@@ -47,7 +47,7 @@
   }
   ::-webkit-scrollbar-track {
     border-radius: 100vh;
-    background: #86efac;
+    background: #000;
   }
   
   /* Handle */

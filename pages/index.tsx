@@ -16,7 +16,7 @@ const Home: NextPage = () => {
 
   const handleChange = (key: string) => {
     if (key !== "Enter") return;
-    console.log("kyt", key, input.split(""));
+
     const command = input.split(" ");
     if (command[0].toLocaleLowerCase() !== "run") return;
     switch (command[1].toLocaleLowerCase()) {
@@ -43,6 +43,11 @@ const Home: NextPage = () => {
       default:
         break;
     }
+    setTimeout(() => {
+      const section: any = document.getElementById("bottom");
+      console.log(section.scrollHeight);
+      section.scrollIntoView(false);
+    }, 0);
   };
 
   const renderCommands = () => {
@@ -70,8 +75,8 @@ const Home: NextPage = () => {
       </Head>
 
       <div className="fixed w-full h-full bg-black flex items-center justify-center z-50 select-none px-4 inset-0">
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-11/12 rounded-sm shadow-xl px-2 py-3 grid select-none border-green-600 border xl:w-1/2  h-96">
-          <div className="w-full pb-10 overflow-y-auto">
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-11/12 rounded-sm shadow-xl  grid select-none border-green-600 border xl:w-1/2 h-96">
+          <div className="w-full overflow-y-auto px-2 py-3">
             <div className="font-bold text-2xl text-white">
               <TypeIt
                 getBeforeInit={(instance) => {
@@ -102,7 +107,7 @@ const Home: NextPage = () => {
               />
             </div>
 
-            <div className="text-white pb-5 text-mono tracking-wider">
+            <div className="text-white text-mono tracking-wider">
               <TypeIt
                 options={{ cursor: false, speed: 50 }}
                 getBeforeInit={(instance) => {
@@ -118,10 +123,10 @@ const Home: NextPage = () => {
             </div>
 
             <div>{renderCommands()}</div>
+            <div className="h-1" id="bottom" />
           </div>
 
-          <div className="h-6"></div>
-          <div className="border-2 flex absolute z-10 bottom-0 w-full bg-black">
+          <div className="border-2 flex z-10 w-full bg-black">
             <ChevronRightIcon className="w-7 text-white animate-pulse" />
             <input
               type="text"
